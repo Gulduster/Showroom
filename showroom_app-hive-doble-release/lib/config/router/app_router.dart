@@ -1,0 +1,44 @@
+import "package:go_router/go_router.dart";
+import "package:showroom_maqueta/pages/fulscreenProduct.dart";
+import 'package:showroom_maqueta/pages/scanner_search.dart';
+import "package:showroom_maqueta/pages/login_new.dart";
+import "package:showroom_maqueta/pages/product_page.dart";
+import "package:showroom_maqueta/pages/screensaver.dart";
+import "package:showroom_maqueta/pages/seleccion_origen.dart";
+
+final appRouter = GoRouter(
+  initialLocation: '/',
+  routes: [
+    GoRoute(
+      path: '/video_screen',
+      name: VideoScreen.name,
+      builder: (context, state) => VideoScreen(),
+    ),
+    GoRoute(
+      path: '/fullscreen_product_page',
+      name: FulscreenProduct.name,
+      builder: (context, state) => const FulscreenProduct(),
+    ),
+    GoRoute(
+      path: '/select_origin',
+      name: SeleccionOrigen.name,
+      builder: (context, state) => const SeleccionOrigen(),
+    ),
+    GoRoute(
+      path: '/product_page',
+      name: ProductPage.name,
+      builder: (context, state) => ProductPage(context: context,)
+    ),
+    GoRoute(
+      path: '/product_add',
+      name: AgregarPedido.name,
+      builder: (context, state) => const AgregarPedido(),
+    ),
+    GoRoute(
+      path: '/',
+      name: LoginNew.name,
+      builder: (context, state) => const LoginNew(),
+    ),
+
+  ]
+);
