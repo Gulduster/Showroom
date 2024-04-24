@@ -351,59 +351,61 @@ class _ProductPageState extends State<ProductPage> {
                     ),
 
                     const SizedBox(height: 50,),
-                    const FittedBox(
-                      fit: BoxFit.contain,
-                      child: Text(
-                        'Productos Relacionados',
-                        style: TextStyle(fontSize: 38),
-                      ),
-                    ),
 
+                    //todo relacionados aca
+                    // const FittedBox(
+                    //   fit: BoxFit.contain,
+                    //   child: Text(
+                    //     'Productos Relacionados',
+                    //     style: TextStyle(fontSize: 38),
+                    //   ),
+                    // ),
 
-                    Container(
-                      color: colores.primary,
-                      child: Padding(
-                        padding: const EdgeInsets.all(7),
-                        child: CarouselSlider(
-                          options: CarouselOptions(
-                          onPageChanged: (i, reason) {
-                            //print(i);
-                            print(imagenesRelacionadas[i]);
-                            imagenSeleccionadaRelacionados = imagenesRelacionadas[i];
-                          },
+                    
+                    // Container(
+                    //   color: colores.primary,
+                    //   child: Padding(
+                    //     padding: const EdgeInsets.all(7),
+                    //     child: CarouselSlider(
+                    //       options: CarouselOptions(
+                    //       onPageChanged: (i, reason) {
+                    //         //print(i);
+                    //         print(imagenesRelacionadas[i]);
+                    //         imagenSeleccionadaRelacionados = imagenesRelacionadas[i];
+                    //       },
                             
-                            height: MediaQuery.of(context).size.height/3.5,
-                            aspectRatio: 16 / 9,
-                            viewportFraction: 0.4,
-                            initialPage: 0,
-                            enableInfiniteScroll: true,
-                            reverse: false,
-                            autoPlay: true,
-                            autoPlayInterval: const Duration(seconds: 5),
-                            autoPlayAnimationDuration:
-                                const Duration(milliseconds: 1000),
-                            autoPlayCurve: Curves.fastOutSlowIn,
-                            enlargeCenterPage: true,
-                            scrollDirection: Axis.horizontal,
-                          ),
-                          items: imagenesRelacionadas.map((item) {
-                            return Builder(
-                              builder: (BuildContext context) {
-                                return InkWell(
-                                  onTap: (){
-                                    print(imagenSeleccionadaRelacionados);
-                                  },
-                                  child: Image(
-                                    height: MediaQuery.of(context).size.height/4,
-                                    image: AssetImage(item),
-                                  ),
-                                );
-                              },
-                            );
-                          }).toList(),
-                        ),
-                      ),
-                    ),  
+                    //         height: MediaQuery.of(context).size.height/3.5,
+                    //         aspectRatio: 16 / 9,
+                    //         viewportFraction: 0.4,
+                    //         initialPage: 0,
+                    //         enableInfiniteScroll: true,
+                    //         reverse: false,
+                    //         autoPlay: true,
+                    //         autoPlayInterval: const Duration(seconds: 5),
+                    //         autoPlayAnimationDuration:
+                    //             const Duration(milliseconds: 1000),
+                    //         autoPlayCurve: Curves.fastOutSlowIn,
+                    //         enlargeCenterPage: true,
+                    //         scrollDirection: Axis.horizontal,
+                    //       ),
+                    //       items: imagenesRelacionadas.map((item) {
+                    //         return Builder(
+                    //           builder: (BuildContext context) {
+                    //             return InkWell(
+                    //               onTap: (){
+                    //                 print(imagenSeleccionadaRelacionados);
+                    //               },
+                    //               child: Image(
+                    //                 height: MediaQuery.of(context).size.height/4,
+                    //                 image: AssetImage(item),
+                    //               ),
+                    //             );
+                    //           },
+                    //         );
+                    //       }).toList(),
+                    //     ),
+                    //   ),
+                    // ),  
                   ]
                 ),
             ),
