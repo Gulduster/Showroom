@@ -1,8 +1,10 @@
 import 'package:cached_network_image/cached_network_image.dart';
-import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
+import 'package:photo_view/photo_view.dart';
+import 'package:photo_view/photo_view_gallery.dart';
 import 'package:provider/provider.dart';
 import 'package:showroom_maqueta/config/router/app_router.dart';
+
 import 'package:showroom_maqueta/models/product.dart';
 import 'package:showroom_maqueta/providers/item_provider.dart';
 
@@ -39,45 +41,29 @@ class _FulscreenProductState extends State<FulscreenProduct> {
     
     final colors = Theme.of(context).colorScheme;
     return Scaffold(
-      body: Container(
-        color: colors.primary,
-        width: MediaQuery.of(context).size.width,
-        height: MediaQuery.of(context).size.height,
-        child: CarouselSlider(
-                options:CarouselOptions(
-                  height: MediaQuery.of(context).size.height,
-                  aspectRatio: 16 / 9,
-                  viewportFraction: 1,
-                  initialPage: indexActual,
-                  enableInfiniteScroll: true,
-                  reverse: false,
-                  autoPlay: false,
-                  autoPlayInterval: const Duration(seconds: 5),
-                  autoPlayAnimationDuration:
-                      const Duration(milliseconds: 1000),
-                  autoPlayCurve: Curves.fastOutSlowIn,
-                  enlargeCenterPage: true,
-                  scrollDirection: Axis.horizontal,
-                ),
-                items: productoSeleccionado.imagenes.map((item) {
-                  return Builder(
-                    builder: (BuildContext context) {
-                      return InkWell(
-                        onTap: (){
-                          appRouter.pop();
-                        },
-                        child: CachedNetworkImage(
-                                  
-                                  height: MediaQuery.of(context).size.height/3,
-                                  imageUrl: item,
-                                  errorWidget: (context, url, error) => const Icon(Icons.error),
-                                ),
-                      );
-                    },
-                  );
-                }).toList(),
-                                           ),
-      ),
+      body: InkWell(
+        onTap: () => appRouter.pop(),
+        child: Container(
+          color: colors.primary,
+          width: MediaQuery.of(context).size.width,
+          height: MediaQuery.of(context).size.height,
+          child: PhotoViewGallery.builder(
+            pageController: PageController(initialPage: indexActual),
+            itemCount: productoSeleccionado.imagenes.length,
+            builder: (context, index) {
+              final imagenSeleccionada = productoSeleccionado.imagenes[index];
+              return PhotoViewGalleryPageOptions(
+                imageProvider: CachedNetworkImageProvider(imagenSeleccionada),
+                minScale: PhotoViewComputedScale.contained,
+                maxScale: PhotoViewComputedScale.contained * 4,
+        
+              );
+            },
+            )
+          //productoSeleccionado.imagenes[indexActual],
+        ),
+      )
     );
-  }
+                }
+                                 
 }
