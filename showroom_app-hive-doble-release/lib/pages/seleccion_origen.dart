@@ -74,40 +74,85 @@ void initState() {
   Widget build(BuildContext context) {
     
     
-    return Scaffold(
-      backgroundColor: Colors.white,
-      body: cargando ? const Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          crossAxisAlignment: CrossAxisAlignment.center,
-
-          children: [
-            Text('Aguarde por favor...',style: TextStyle(fontSize: 24)),
-            SizedBox(height: 30,),
-            CircularProgressIndicator(strokeWidth: 10,),
-          ],
-        )
-      ) : 
-      Center(
+    return SafeArea(
+      child: Scaffold(
+        backgroundColor: Colors.white,
+        body: cargando ? const Center(
           child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Flexible(
-              flex: 1,
-              child: Container(
-                  height: 400,
-                  width: 400,
-                  padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 50),
-                  decoration: BoxDecoration(borderRadius: BorderRadius.circular(30)),
-                  child: InkWell(
+            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.center,
+      
+            children: [
+              Text('Aguarde por favor...',style: TextStyle(fontSize: 24)),
+              SizedBox(height: 30,),
+              CircularProgressIndicator(strokeWidth: 10,),
+            ],
+          )
+        ) : 
+        Center(
+            child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Flexible(
+                flex: 1,
+                child: Container(
+                    height: 400,
+                    width: 400,
+                    padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 50),
+                    decoration: BoxDecoration(borderRadius: BorderRadius.circular(30)),
+                    child: InkWell(
+                        onTap: () async {
+                          
+                          Provider.of<ThemeProvider>(context, listen: false).selectedColor = 1;
+                          Provider.of<ItemProvider>(context, listen: false).setAlmacen('81');
+      
+                          almacen = '81';
+                          if(boxProduct.isEmpty){
+                            await cargarDatos();
+                          }else{
+                            Product producto = boxProduct.getAt(0);
+                            if(producto.codAlmacen != almacen || switchValue) {
+                              boxProduct.clear();
+                              await cargarDatos();
+                            }
+                          }
+                          print(boxProduct.length);
+                          appRouter.push('/product_add');
+                          
+                        },
+                        child: Container(
+                            padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 50),
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(10),
+                              border: Border.all(color: const Color.fromARGB(255, 211, 0, 41), width: 3),
+                            ),
+                            child: Image.asset('images/ufo-logo.png')
+                          )
+                    )
+                ),
+              ),
+      
+              const SizedBox(
+                width: 300,
+              ),
+              Flexible(
+                flex: 1,
+                child: Container(
+                    height: 400,
+                    width: 400,
+                    padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 50),
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(30),
+                    ),
+                    child: InkWell(
                       onTap: () async {
+                        Provider.of<ItemProvider>(context, listen: false).setAlmacen('1');
+                        Provider.of<ThemeProvider>(context, listen: false).selectedColor = 0;
                         
-                        Provider.of<ThemeProvider>(context, listen: false).selectedColor = 1;
-                        Provider.of<ItemProvider>(context, listen: false).setAlmacen('81');
-
-                        almacen = '81';
+      
+                        almacen = '1';
                         if(boxProduct.isEmpty){
-                          await cargarDatos();
+                          cargarDatos();
                         }else{
                           Product producto = boxProduct.getAt(0);
                           if(producto.codAlmacen != almacen || switchValue) {
@@ -115,101 +160,58 @@ void initState() {
                             await cargarDatos();
                           }
                         }
+                        
+      
                         print(boxProduct.length);
                         appRouter.push('/product_add');
                         
                       },
                       child: Container(
-                          padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 50),
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(10),
-                            border: Border.all(color: const Color.fromARGB(255, 211, 0, 41), width: 3),
-                          ),
-                          child: Image.asset('images/ufo-logo.png')
-                        )
-                  )
-              ),
-            ),
-
-            const SizedBox(
-              width: 300,
-            ),
-            Flexible(
-              flex: 1,
-              child: Container(
-                  height: 400,
-                  width: 400,
-                  padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 50),
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(30),
-                  ),
-                  child: InkWell(
-                    onTap: () async {
-                      Provider.of<ItemProvider>(context, listen: false).setAlmacen('1');
-                      Provider.of<ThemeProvider>(context, listen: false).selectedColor = 0;
-                      
-
-                      almacen = '1';
-                      if(boxProduct.isEmpty){
-                        cargarDatos();
-                      }else{
-                        Product producto = boxProduct.getAt(0);
-                        if(producto.codAlmacen != almacen || switchValue) {
-                          boxProduct.clear();
-                          await cargarDatos();
-                        }
-                      }
-                      
-
-                      print(boxProduct.length);
-                      appRouter.push('/product_add');
-                      
-                    },
-                    child: Container(
-                    padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 50),
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(10),
-                      border: Border.all(color: Colors.blue.shade900, width: 3),
-                      
+                      padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 50),
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(10),
+                        border: Border.all(color: Colors.blue.shade900, width: 3),
+                        
+                      ),
+                      child: Image.asset(
+                        'images/nyp-logo.png',
+                      )),
                     ),
-                    child: Image.asset(
-                      'images/nyp-logo.png',
-                    )),
-                  ),
-              ),
-            ),
-            const SizedBox(height: 10,),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: [
-                ElevatedButton(
-                  onPressed: (){
-                    logout();
-                  }, 
-                  child: const Text('Cerrar Sesion')
                 ),
-                Column(
-                  children: [
-                    const Text('Sincronizar?'),
-                    Switch(
-                      value: switchValue, 
-                      onChanged:(value) {
-                        setState(() {
-                          switchValue = !switchValue;
-                          
-                        });
-                      },
-                      activeColor: Colors.teal,
-                    ),
-                  ],
-                )
-              ],
-            ),
-            
+              ),
+              const SizedBox(height: 10,),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: [
+                  ElevatedButton(
+                    onPressed: (){
+                      logout();
+                    }, 
+                    child: const Text('Cerrar Sesion')
+                  ),
+                  Column(
+                    children: [
+                      const Text('Sincronizar?'),
+                      Switch(
+                        value: switchValue, 
+                        onChanged:(value) {
+                          setState(() {
+                            switchValue = !switchValue;
+                            
+                          });
+                        },
+                        activeColor: Colors.teal,
+                      ),
+                    ],
+                  )
+                ],
+              ),
               
-
-          ],
-        )
+                
+      
+            ],
+          )
+        ),
       ),
     );
 

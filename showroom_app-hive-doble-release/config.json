@@ -1,4 +1,4 @@
 {
-    "APIURL": "http://200.125.34.2:3001",
-    "MODO": "T"
+    "APIURL": "http://vps.nypsrl.com:30001",
+    "MODO": "C"
 }
