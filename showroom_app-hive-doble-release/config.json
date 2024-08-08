@@ -1,4 +1,4 @@
 {
-    "APIURL": "http://vps.nypsrl.com:30001",
+    "APIURL": "https://vps.nypsrl.com",
     "MODO": "C"
 }

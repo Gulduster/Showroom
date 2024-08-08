@@ -226,53 +226,53 @@ Widget build(BuildContext context) {
             ),
           ),
           ]else ... [
-            // Container(
-            //   height: MediaQuery.of(context).size.height /9,
-            //   width: MediaQuery.of(context).size.width/1.1,
-            //   child: ElevatedButton(
-            //     style: ButtonStyle(
+            Container(
+              height: MediaQuery.of(context).size.height /9,
+              width: MediaQuery.of(context).size.width/1.1,
+              child: ElevatedButton(
+                style: ButtonStyle(
               
-            //       alignment: Alignment.center,
-            //       backgroundColor: WidgetStatePropertyAll(colors.primary)
-            //     ),
-            //     onPressed: () async {
-            //       var res = await Navigator.push(
-            //         context,
-            //         MaterialPageRoute(
-            //           builder: (context) => const SimpleBarcodeScannerPage(),
-            //         ),
-            //       );
-            //       if (res == null) {
-            //         print("El scanner se cerro o no se tiene permisos de cámara");
-            //       }
-            //       if (res is String) {
-            //         result = res;
-            //         if (result != '-1'){
-            //           productoScanner = await ProductServices().getProductsOfflineFinal(result);
-            //           context.read<ItemProvider>().setProduct(productoScanner[0]);
-            //           context.read<ItemProvider>().setItem(productoScanner[0].raiz);
-            //           historial.insert(0, productoScanner[0]);
-            //           appRouter.push('/product_page');    
-            //         }
+                  alignment: Alignment.center,
+                  backgroundColor: WidgetStatePropertyAll(colors.primary)
+                ),
+                onPressed: () async {
+                  var res = await Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => const SimpleBarcodeScannerPage(),
+                    ),
+                  );
+                  if (res == null) {
+                    print("El scanner se cerro o no se tiene permisos de cámara");
+                  }
+                  if (res is String) {
+                    result = res;
+                    if (result != '-1'){
+                      productoScanner = await ProductServices().getProductsOfflineFinal(result);
+                      context.read<ItemProvider>().setProduct(productoScanner[0]);
+                      context.read<ItemProvider>().setItem(productoScanner[0].raiz);
+                      historial.insert(0, productoScanner[0]);
+                      appRouter.push('/product_page');    
+                    }
                      
-            //       }
-            //       setState(() {
+                  }
+                  setState(() {
                     
-            //       });
-            //     },
-            //     child: const Text(
+                  });
+                },
+                child: const Text(
 
-            //       'Escanee Un Producto con su telefono',textAlign: TextAlign.center,
-            //       style: TextStyle(fontSize: 22, color: Colors.white, ), 
+                  'Escanee Un Producto con su telefono',textAlign: TextAlign.center,
+                  style: TextStyle(fontSize: 22, color: Colors.white, ), 
                   
-            //     ),
-            //   ),
-            // ),
-            //     const SizedBox(
-            //       height: 16,
-            //     ),
+                ),
+              ),
+            ),
+                const SizedBox(
+                  height: 16,
+                ),
     
-            //     Text('Barcode Result: $result'),
+                Text('Barcode Result: $result'),
           ],
           const SizedBox(
             height: 20,
