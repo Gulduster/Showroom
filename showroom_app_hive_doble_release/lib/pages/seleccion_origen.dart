@@ -206,6 +206,13 @@ void initState() {
                   )
                 ],
               ),
+              SizedBox(height: 20,),
+              TextButton(
+                onPressed: (){
+                  appRouter.push('/dashboard');
+                }, 
+                child: Text('Ir a Dashboard')
+              ),
               
                 
       

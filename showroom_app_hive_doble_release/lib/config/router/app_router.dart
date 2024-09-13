@@ -1,10 +1,12 @@
 import "package:go_router/go_router.dart";
+import "package:showroom_maqueta/pages/dashboard.dart";
 import "package:showroom_maqueta/pages/fulscreenProduct.dart";
 import 'package:showroom_maqueta/pages/scanner_search.dart';
 import "package:showroom_maqueta/pages/login_new.dart";
 import "package:showroom_maqueta/pages/product_page.dart";
 import "package:showroom_maqueta/pages/screensaver.dart";
 import "package:showroom_maqueta/pages/seleccion_origen.dart";
+import "package:showroom_maqueta/pages/version_check.dart";
 
 final appRouter = GoRouter(
   initialLocation: '/',
@@ -35,9 +37,19 @@ final appRouter = GoRouter(
       builder: (context, state) => const AgregarPedido(),
     ),
     GoRoute(
-      path: '/',
+      path: '/login',
       name: LoginNew.name,
       builder: (context, state) => const LoginNew(),
+    ),
+    GoRoute(
+      path: '/',
+      name: VersionCheckPage.name,
+      builder: (context, state) => const VersionCheckPage(),
+    ),
+    GoRoute(
+      path: '/dashboard',
+      name: DashboardPage.name,
+      builder: (context, state) => const DashboardPage(),
     ),
 
   ]
