@@ -20,13 +20,14 @@ void main() async {
   
   
   boxProduct = await Hive.openBox<Product>('producstBox');
-  runApp(MultiProvider(
-    providers: [
-       ChangeNotifierProvider(create: (_)=> ItemProvider(),),
-       ChangeNotifierProvider(create: (_) => ThemeProvider(),),
-    ],
-    child: const MyApp(),
-  )
+  runApp(
+    MultiProvider(
+      providers: [
+         ChangeNotifierProvider(create: (_)=> ItemProvider(),),
+         ChangeNotifierProvider(create: (_) => ThemeProvider(),),
+      ],
+      child: const MyApp(),
+    )
   );
 }
 
