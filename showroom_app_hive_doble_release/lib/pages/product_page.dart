@@ -32,10 +32,8 @@ class _ProductPageState extends State<ProductPage> {
   late String codTipoLista = '';
   var talles = <String>{};
   late List<ProductColor> colors;
-  var priceMask =
-      MaskTextInputFormatter(mask: '#######', filter: {"#": RegExp(r'[0-9.]')});
-  var cantMask =
-      new MaskTextInputFormatter(mask: '####', filter: {"#": RegExp(r'[0-9]')});
+  var priceMask = MaskTextInputFormatter(mask: '#######', filter: {"#": RegExp(r'[0-9.]')});
+  var cantMask = MaskTextInputFormatter(mask: '####', filter: {"#": RegExp(r'[0-9]')});
   late num cantidadTotal = 0;
   late double montoTotal = 0.0;
   Map<String, int> cantidadPorTalle = {};
@@ -95,8 +93,7 @@ class _ProductPageState extends State<ProductPage> {
     _products = productoSeleccionado.variantes;
     
     
-    List<dynamic> listaTalles =
-        _products!.where((productoVariante) => talles.add(productoVariante.talle)).toList(); 
+    List<dynamic> listaTalles = _products!.where((productoVariante) => talles.add(productoVariante.talle)).toList(); 
     var models = <ProductColor>{};
     for (var i = 0; i < _products!.length; i++) {
       models.add(
@@ -204,8 +201,7 @@ class _ProductPageState extends State<ProductPage> {
   middleBody() {
     final colores = Theme.of(context).colorScheme;
     
-    List<dynamic> listaTalles =
-        _products!.where((talle) => talles.add(talle.talle)).toList();
+    List<dynamic> listaTalles = _products!.where((talle) => talles.add(talle.talle)).toList();
     late String? talleSeleccionado; 
     return buscando
         ?  const Center(

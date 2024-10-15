@@ -28,8 +28,7 @@ class ProductServices {
   }
 
   Future<List<Product>> getProductByVariant(String raiz, String codAlmacen, String token, String codTipoLista) async {
-    String link = apirUrl +=
-        '/api/servicios/variantesItem/$raiz?codAlmacen=$codAlmacen&mismoColor=n&codTipoLista=$codTipoLista';
+    String link = apirUrl += '/api/servicios/variantesItem/$raiz?codAlmacen=$codAlmacen&mismoColor=n&codTipoLista=$codTipoLista';
 
     try {
       var headers = {'Authorization': token};
